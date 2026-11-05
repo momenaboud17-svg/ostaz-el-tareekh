@@ -1,0 +1,235 @@
+@import "@fontsource/amiri/arabic-400.css";
+@import "@fontsource/amiri/arabic-700.css";
+@import "@fontsource/amiri/arabic-400-italic.css";
+@import "@fontsource/amiri/latin-400.css";
+@import "@fontsource/amiri/latin-700.css";
+@import "@fontsource/cairo/arabic-400.css";
+@import "@fontsource/cairo/arabic-500.css";
+@import "@fontsource/cairo/arabic-600.css";
+@import "@fontsource/cairo/arabic-700.css";
+@import "@fontsource/cairo/latin-400.css";
+@import "@fontsource/cairo/latin-500.css";
+@import "@fontsource/cairo/latin-600.css";
+@import "@fontsource/cairo/latin-700.css";
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #07080c;
+  --color-navy: #0d1b33;
+  --color-gold: #c6a15a;
+  --color-ivory: #f7f3ea;
+  --color-sand: #d5c8b2;
+  --font-display: "Amiri", "Noto Naskh Arabic", serif;
+  --font-sans: "Cairo", "Segoe UI", Tahoma, sans-serif;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cpath d='M90 12 L98 82 L168 90 L98 98 L90 168 L82 98 L12 90 L82 82 Z' fill='none' stroke='%23c6a15a' stroke-width='0.6' opacity='0.16'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    font-family: var(--font-display);
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+@layer components {
+  .btn-gold,
+  .btn-line {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding-inline: 1.5rem;
+    font-weight: 600;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease;
+  }
+
+  .btn-gold {
+    background: var(--color-gold);
+    color: var(--color-ink);
+  }
+
+  .btn-gold:hover {
+    background: var(--color-ivory);
+  }
+
+  .btn-line {
+    border: 1px solid var(--color-gold);
+    background: transparent;
+    color: var(--color-gold);
+  }
+
+  .btn-line:hover {
+    background: color-mix(in oklab, var(--color-gold) 14%, transparent);
+  }
+
+  .field {
+    width: 100%;
+    border: 1px solid color-mix(in oklab, var(--color-gold) 38%, transparent);
+    background: var(--color-ink);
+    color: var(--color-ivory);
+    padding-inline: 1rem;
+  }
+
+  input.field,
+  select.field {
+    height: 3rem;
+  }
+
+  textarea.field {
+    min-height: 8rem;
+    padding-block: 0.85rem;
+    resize: vertical;
+  }
+
+  .field::placeholder {
+    color: color-mix(in oklab, var(--color-sand) 70%, transparent);
+  }
+
+  .nav-link {
+    background-image: linear-gradient(var(--color-gold), var(--color-gold));
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-size: 0 1px;
+    transition:
+      background-size 200ms ease,
+      color 200ms ease;
+  }
+
+  .nav-link:hover,
+  .nav-link[data-active="true"] {
+    background-size: 100% 1px;
+    color: var(--color-gold);
+  }
+
+  .portrait {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .portrait img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 16%;
+  }
+
+  .topics li {
+    position: relative;
+    padding-inline-start: 1.15rem;
+  }
+
+  .topics li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.55em;
+    width: 0.4rem;
+    height: 0.4rem;
+    background: var(--color-gold);
+    transform: rotate(45deg);
+  }
+
+  .band {
+    position: relative;
+    isolation: isolate;
+    min-height: 26rem;
+    overflow: hidden;
+  }
+
+  .band img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .band-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--color-ink) 28%, transparent),
+      color-mix(in oklab, var(--color-ink) 78%, transparent)
+    );
+  }
+
+  .band-copy {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    min-height: inherit;
+  }
+
+  .caption-fade {
+    background: linear-gradient(
+      transparent,
+      color-mix(in oklab, var(--color-ink) 92%, transparent)
+    );
+  }
+}
+
+@media (min-width: 1024px) {
+  .portrait {
+    aspect-ratio: 4 / 5;
+  }
+
+  .band {
+    min-height: 32rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn-gold,
+  .btn-line,
+  .nav-link {
+    transition: none;
+  }
+}
